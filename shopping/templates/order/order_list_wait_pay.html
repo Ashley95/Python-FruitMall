@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <h3>待付款订单列表</h3>
+
+    <ul>
+        <!--订单信息展示-->
+        {% for order in orders %}
+            <li>
+                <a href="">
+                    <p><!-- 订单id -->
+                    <a href="{% url 'shopping:waitPayToPayed' %}?order_id={{ order.id }}">{{ order.o_num }}</a></p>
+                    <p><!-- 数量 --></p>
+                    {% for order_goods in order.ordergoodsmodel_set.all %}
+                        <!--展示商品的名称-->
+                        <li>
+                            <img src="{{ order_goods.goods.productimg }}" width="200" height="200" alt="">
+                        </li>
+                        <!--处理结束-->
+                    {% endfor %}
+                </a>
+            </li>
+        {% endfor %}
+        <!--订单处理结束-->
+
+
+    </ul>
+
+
+{% endblock %}
